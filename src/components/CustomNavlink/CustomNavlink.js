@@ -8,7 +8,7 @@ const CustomNavLink = ({ to, children }) => {
     return (
         <NavLink
             to={to}
-            className={` ${isActive ? 'font-bold' : ''}`}
+            className={` ${isActive ? 'underline underline-offset-4 font-extrabold text-blue-700' : 'text-blue-700'}`}
         >
             {children}
         </NavLink>

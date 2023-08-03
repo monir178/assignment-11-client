@@ -1,5 +1,7 @@
 import React from 'react';
-import logo from '../../assests/logo/logo.png'
+import Lottie from 'lottie-react';
+import animation from '../../assests/animation/camera.json';
+
 const Footer = () => {
     return (
         <footer
@@ -10,7 +12,9 @@ const Footer = () => {
             }}
             className="footer footer-center p-10 text-black">
             <div>
-                <img className='w-14' src={logo} alt=''></img>
+                <div className="w-20">
+                    <Lottie animationData={animation} loop={true} />
+                </div>
                 <p className="font-bold">
                     Capture Craze Ltd. <br />Capturing timeless moments with cutting-edge technology since 2006.
                 </p>

@@ -174,26 +174,26 @@ const Login = () => {
 
                     <button
                         onClick={handleGoogleSignIn}
-                        className="flex items-center justify-center mt-4 rounded-lg shadow-md hover:bg-gray-100 w-full">
-                        <div className="px-4 py-3 text-2xl">
-                            <FcGoogle></FcGoogle>
+                        className="mt-4 py-3 rounded-lg shadow-md hover:bg-sky-300 w-full">
+                        <div className="flex justify-center items-center">
+                            <FcGoogle className='w-6 h-6 mr-2'></FcGoogle>
+                            <p className="font-bold"> Sign in with Google</p>
                         </div>
-                        <h1 className="px-4 py-3 w-5/6 text-center font-bold">Sign in with Google</h1>
                     </button>
                     <button
                         onClick={handleGithubSignIn}
-                        className="flex items-center justify-center mt-4  rounded-lg shadow-md hover:bg-gray-100 w-full">
-                        <div className="px-4 py-3 text-2xl">
-                            <FaGithub></FaGithub>
+                        className="mt-4 py-3 rounded-lg shadow-md hover:bg-sky-300 w-full">
+                        <div className="flex justify-center items-center">
+                            <FaGithub className='w-6 h-6 mr-2'></FaGithub>
+                            <p className="font-bold"> Sign in with Github</p>
                         </div>
-                        <h1 className="px-4 py-3 w-5/6 text-center font-bold">Sign in with Github</h1>
                     </button>
 
 
                     <div className="mt-4 flex items-center justify-between">
-                        <span className="border-b w-1/5 md:w-1/4"></span>
-                        <Link to="/register" className="text-base font-semibold text-blue-700 hover:text-blue-400">or Sign up</Link>
-                        <span className="border-b w-1/5 md:w-1/4"></span>
+                        <span className="border-b border-blue-400 w-1/5 md:w-1/4"></span>
+                        <Link to="/register" className="text-base font-semibold text-white hover:text-blue-400">or Sign up</Link>
+                        <span className="border-b border-blue-400 w-1/5 md:w-1/4"></span>
                     </div>
                 </div>
             </div>

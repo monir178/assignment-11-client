@@ -14,6 +14,11 @@ const Header = () => {
         setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
     };
 
+    // const handleNavLinkClick = () => {
+
+    //     setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+    // };
+
     const handleLogOut = () => {
         logOut()
             .then()
@@ -25,7 +30,7 @@ const Header = () => {
             <div className="px-0 lg:px-4">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center justify-center">
-                        <Link to="/" className="btn-ghost pr-2 rounded-xl font-extrabold normal-case text-xl flex items-center justify-center">
+                        <Link to="/" className="btn-ghost pr-2 rounded-xl font-extrabold normal-case text-xl flex items-center justify-center text-sky-600">
                             <div className="w-14">
                                 <Lottie animationData={animation} loop={true} />
                             </div>
@@ -81,7 +86,9 @@ const Header = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <div className="flex flex-col text-end">
 
-                        <CustomNavLink to="/blogs">Blogs</CustomNavLink>
+                        <CustomNavLink
+                            to="/blogs">Blogs</CustomNavLink>
+
                         <CustomNavLink to="/">Home</CustomNavLink>
                         {user?.uid ? (
                             <>
