@@ -24,7 +24,7 @@ const Blogs = () => {
                     NoSQL, short for Not only SQL, is a type of database management system that offers a more flexible approach to data storage compared to SQL databases. NoSQL databases use various data models, such as key-value, document, column-family, and graph databases, and they do not adhere to a fixed schema. This schema-less nature allows developers to store and retrieve data without strict constraints, making it ideal for applications with dynamic, unstructured, or rapidly changing data. NoSQL databases often prioritize availability and partition tolerance over strict consistency, following the BASE (Basically Available, Soft state, Eventually consistent) model. They are well-suited for modern applications dealing with big data, real-time analytics, content management, social media platforms, and Internet of Things (IoT) devices, where horizontal scalability and high availability are crucial.
                 </p>
             </div>
-            <h1 className='text-center my-5 font-bold text-2xl text-blue-700 '><span>Asked: </span> What is JWT, and how does it work?</h1>
+            <h1 className='text-center my-5 font-bold text-2xl text-blue-700'><span>Asked: </span> What is JWT, and how does it work?</h1>
 
             <div className='p-4  mb-6 rounded-xl font-semibold' style={{
                 backdropFilter: 'blur(10px)',

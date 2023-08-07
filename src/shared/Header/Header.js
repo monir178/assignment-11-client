@@ -46,7 +46,7 @@ const Header = () => {
                                 <>
                                     <CustomNavLink className="font-semibold" to="/addservice">Add Service</CustomNavLink>
                                     <CustomNavLink className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
-                                    <button onClick={handleLogOut} className="bg-gradient-to-b from-red-500 to-red-300 rounded-lg px-2">
+                                    <button onClick={handleLogOut} className="bg-gradient-to-b text-white from-blue-500 to-sky-300 rounded-lg px-3">
                                         Logout
                                     </button>
                                 </>
@@ -56,17 +56,17 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="flex items-center md:ml-6">
-                        <Link>
-                            {user?.uid ? (
-                                <img src={user?.photoURL} alt="Profile" className="h-8 w-8 rounded-full" />
-                            ) : (
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
-                                    alt="Profile"
-                                    className="h-8 w-8 rounded-full"
-                                />
-                            )}
-                        </Link>
+
+                        {user?.uid ? (
+                            <img src={user?.photoURL} alt="Profile" className="h-8 w-8 rounded-full" />
+                        ) : (
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                                alt="Profile"
+                                className="h-8 w-8 rounded-full"
+                            />
+                        )}
+
                     </div>
                     <div className="-mr-2 flex md:hidden">
                         <button
@@ -94,7 +94,7 @@ const Header = () => {
                             <>
                                 <CustomNavLink className="font-semibold" to="/addservice">Add Service</CustomNavLink>
                                 <CustomNavLink className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
-                                <button onClick={handleLogOut} className="bg-gradient-to-b from-red-500 to-red-300 rounded-lg px-2">
+                                <button onClick={handleLogOut} className="bg-gradient-to-b from-blue-500 to-sky-300 text-white rounded-lg px-3">
                                     Logout
                                 </button>
                             </>

@@ -19,11 +19,11 @@ const Banner = () => {
                         Soulful Snapshots
                     </h1>
                     <p className="py-12 w-4/5 mx-auto text-gray-800">
-                        Welcome to Snapshot Stories, where captivating photography meets timeless memories. Our skilled photographers capture vivid moments and create compelling stories through their lens. Explore our diverse gallery and immerse yourself in the beauty and emotion of our photographs. Be a part of our ever-growing collection of Snapshot Stories.
+                        Welcome to <span className='text-yellow-600'>Capture Craze</span>, where captivating photography meets timeless memories. I am a skilled photographer, dedicated to freezing vivid moments and creating compelling stories through my lens. Explore my diverse gallery and immerse yourself in the beauty and emotion of my photographs. Be a part of my ever-growing collection of Snapshot Stories.
                     </p>
                     <div className="flex justify-center items-center">
                         <Link to="https://mail.google.com/">  <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 w-5/6 md:w-56 lg:w-64 rounded flex items-center justify-center">
-                            <p>Contact Me</p>
+                            <p>Contact</p>
                             <MdContactMail className='ms-2 w-6 h-6' />
                         </button></Link>
                     </div>

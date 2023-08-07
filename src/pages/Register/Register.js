@@ -14,11 +14,12 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
-        const photoURL = form.photoURL.value;
         const email = form.email.value;
+        const phone = form.phone.value;
+        const photoURL = form.photoURL.value;
         const password = form.password.value;
         const confirmPassword = form.confirm.value;
-        console.log(name, photoURL, email, password, confirmPassword);
+        console.log(name, photoURL, phone, email, password, confirmPassword);
 
 
         if (password === confirmPassword) {
@@ -34,7 +35,7 @@ const Register = () => {
                     Swal.fire({
                         position: 'top',
                         icon: 'success',
-                        title: 'Registration Successful. Check your email for verification',
+                        title: 'Registration Successful.',
                         showConfirmButton: false,
                         timer: 3000
                     });
