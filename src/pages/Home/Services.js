@@ -19,6 +19,8 @@ const Services = () => {
     }, []);
 
     //Loading spinner function
+
+    //Loading spinner function
     const LoadingSpinner = () => {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -88,7 +90,7 @@ const Services = () => {
                 isLoading ?
                     <LoadingSpinner></LoadingSpinner>
                     :
-                    <div className='grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 2xl:grid-cols-4 mx-auto '>
+                    <div className='grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 2xl:grid-cols-4 mx-auto'>
                         {
                             services.map(service => <ServiceCard
                                 key={service._id}

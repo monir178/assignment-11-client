@@ -23,7 +23,7 @@ const ServiceCard = ({ service }) => {
                     Service charge: <span className="text-yellow-700"> ${price}</span>
                 </p>
                 <div className="card-actions justify-end">
-                    <Link to="/serviceDetails" className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
+                    <Link to={`/service/${_id}`} className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
                         <p>View details</p>
                     </Link>
                 </div>
