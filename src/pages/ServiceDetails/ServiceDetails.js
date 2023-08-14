@@ -32,7 +32,9 @@ const ServiceDetails = () => {
 
             </div>
 
-            <Review></Review>
+            <Review
+                serviceData={singleService.data}
+            ></Review>
         </div>
     );
 };
