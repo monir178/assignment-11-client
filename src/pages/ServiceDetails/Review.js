@@ -1,18 +1,50 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Review = ({ serviceData }) => {
     const { user } = useContext(AuthContext);
 
+
+
     const handleAddReview = event => {
-        event.preventDefault()
+        event.preventDefault();
+        const form = event.target;
+
         const review = {
-            email: event.target.email.value,
-            name: event.target.name.value,
-            service: event.target.service.value,
-            description: event.target.description.value,
+            service_id: serviceData._id,
+            email: form.email.value,
+            name: form.name.value,
+            service: form.service.value,
+            description: form.description.value,
         };
+        console.log(review);
+        window.my_modal_1.close()
+
+        fetch("http://localhost:5000/services", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire(data.message)
+                }
+                else {
+                    Swal.fire(
+                        data.error
+                    )
+                }
+            })
+            .catch(err => {
+                Swal.fire(err.message)
+            })
+
+        form.reset();
 
     }
 
@@ -60,8 +92,6 @@ const Review = ({ serviceData }) => {
                                 <td>
                                     <p className='text-center'>reviewwwwwwww</p>
                                 </td>
-
-
                             </tr>
                         </tbody>
                     </table>
@@ -72,15 +102,16 @@ const Review = ({ serviceData }) => {
             {
                 user?.email ?
                     <>
-                        {/* Open the modal using ID.showModal() method */}
+
                         <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 rounded flex items-center justify-center mt-6" onClick={() => window.my_modal_1.showModal()}>Add Review</button>
 
                         <dialog id="my_modal_1" className="modal">
-                            <form onSubmit={handleAddReview} method="dialog" className="modal-box">
-                                <div className="modal-action">
+                            <div className="modal-action">
 
-                                    <button className="btn" onClick={() => window.my_modal_1.close()}>X</button>
-                                </div>
+                                <button className="btn" onClick={() => window.my_modal_1.close()}>X</button>
+                            </div>
+                            <form onSubmit={handleAddReview} method="dialog" className="modal-box">
+
                                 <div className="mt-4">
                                     <label className="block  text-sm font-bold mb-2">Your Service Name</label>
                                     <input

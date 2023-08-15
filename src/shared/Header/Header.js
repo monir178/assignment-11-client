@@ -12,12 +12,9 @@ const Header = () => {
 
     const handleHamburgerMenuToggle = () => {
         setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+        console.log(isHamburgerMenuOpen);
     };
 
-    // const handleNavLinkClick = () => {
-
-    //     setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
-    // };
 
     const handleLogOut = () => {
         logOut()
@@ -40,18 +37,18 @@ const Header = () => {
                     <div className="hidden md:block lg:block">
                         <div className="flex items-center justify-center space-x-4 ">
 
-                            <CustomNavLink to="/blogs">Blogs</CustomNavLink>
-                            <CustomNavLink to="/">Home</CustomNavLink>
+                            <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} to="/blogs">Blogs</CustomNavLink>
+                            <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} to="/">Home</CustomNavLink>
                             {user?.uid ? (
                                 <>
-                                    <CustomNavLink className="font-semibold" to="/addservice">Add Service</CustomNavLink>
-                                    <CustomNavLink className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
+                                    <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} className="font-semibold" to="/addservice">Add Service</CustomNavLink>
+                                    <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
                                     <button onClick={handleLogOut} className="bg-gradient-to-b text-white from-blue-500 to-sky-300 rounded-lg px-3">
                                         Logout
                                     </button>
                                 </>
                             ) : (
-                                <CustomNavLink className="font-semibold" to="/login">Login</CustomNavLink>
+                                <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} className="font-semibold" to="/login">Login</CustomNavLink>
                             )}
                         </div>
                     </div>
@@ -86,14 +83,14 @@ const Header = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <div className="flex flex-col text-end">
 
-                        <CustomNavLink
+                        <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle}
                             to="/blogs">Blogs</CustomNavLink>
 
-                        <CustomNavLink to="/">Home</CustomNavLink>
+                        <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} to="/">Home</CustomNavLink>
                         {user?.uid ? (
                             <>
-                                <CustomNavLink className="font-semibold" to="/addservice">Add Service</CustomNavLink>
-                                <CustomNavLink className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
+                                <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} className="font-semibold" to="/addservice">Add Service</CustomNavLink>
+                                <CustomNavLink handleHamburgerMenuToggle={handleHamburgerMenuToggle} className="font-semibold" to="/myreview">My Reviews</CustomNavLink>
                                 <button onClick={handleLogOut} className="bg-gradient-to-b from-blue-500 to-sky-300 text-white rounded-lg px-3">
                                     Logout
                                 </button>
