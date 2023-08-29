@@ -2,10 +2,9 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Review from './Review';
 
-
 const ServiceDetails = () => {
     const singleService = useLoaderData();
-    console.log(singleService.data);
+    // console.log(singleService.data);
 
     const { img, title, description, price } = singleService.data;
 
@@ -35,6 +34,7 @@ const ServiceDetails = () => {
             <Review
                 serviceData={singleService.data}
             ></Review>
+
         </div>
     );
 };

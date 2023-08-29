@@ -29,10 +29,36 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                form.reset();
-                setError('');
-                if (user?.emailVerified) {
-                    navigate(from, { replace: true })
+
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+
+
+                if (user?.email) {
+
+                    //get jwt token
+                    fetch('http://localhost:5000/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+                            //store jwt token in local storage
+                            localStorage.setItem('capture-token', data.token)
+                            navigate(from, { replace: true })
+                        })
+
+                    form.reset();
+                    setError('');
+
+
                 }
                 else {
                     Swal.fire("Your email is not verified. Please check your email")
@@ -61,15 +87,39 @@ const Login = () => {
     // Google Sign In Method
     const googleProvider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
+
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
                 setUser(user);
                 console.log(user);
 
-                setError('');
-                if (user?.emailVerified) {
-                    navigate(from, { replace: true })
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+
+
+                if (user?.email) {
+
+                    //get jwt token
+                    fetch('http://localhost:5000/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+                            //store jwt token in local storage
+                            localStorage.setItem('capture-token', data.token)
+                            navigate(from, { replace: true })
+                            setError('');
+                        })
+
                     Swal.fire({
                         position: 'top',
                         icon: 'success',
@@ -77,6 +127,9 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 1500
                     })
+
+
+
                 }
                 else {
                     Swal.fire(
@@ -86,7 +139,9 @@ const Login = () => {
                     )
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+            });
     }
 
     //Github Sign In Method
@@ -97,9 +152,34 @@ const Login = () => {
                 const user = result.user;
                 setUser(user);
                 console.log(user);
-                setError('');
-                if (user?.uid) {
-                    navigate(from, { replace: true })
+
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser);
+
+
+                if (user?.email) {
+
+                    //get jwt token
+                    fetch('http://localhost:5000/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+
+                            //store jwt token in local storage
+                            localStorage.setItem('capture-token', data.token)
+                            navigate(from, { replace: true })
+                            setError('');
+                        })
+
+
                     Swal.fire({
                         position: 'top',
                         icon: 'success',

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Review = ({ serviceData }) => {
+    console.log(serviceData);
     const { user } = useContext(AuthContext);
-
-
+    const [reviews, setReviews] = useState([]);
+    console.log(reviews);
 
     const handleAddReview = event => {
         event.preventDefault();
@@ -18,11 +19,12 @@ const Review = ({ serviceData }) => {
             name: form.name.value,
             service: form.service.value,
             description: form.description.value,
+            img: user?.photoURL,
+            service_img: serviceData.img,
         };
-        console.log(review);
-        window.my_modal_1.close()
 
-        fetch("http://localhost:5000/services", {
+
+        fetch("http://localhost:5000/reviews", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -32,33 +34,44 @@ const Review = ({ serviceData }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    Swal.fire(data.message)
+                    Swal.fire(data.message);
+                    setReviews(prevReviews => [...prevReviews, review])
+
                 }
                 else {
-                    Swal.fire(
-                        data.error
-                    )
+                    Swal.fire(data.error);
                 }
             })
             .catch(err => {
-                Swal.fire(err.message)
-            })
+                Swal.fire(err.message);
+            });
 
         form.reset();
+        window.my_modal_1.close();
+    };
 
-    }
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews/${serviceData._id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setReviews(data.data);
+                }
+            })
+            .catch(err => {
+                console.error(err.message);
+            });
+    }, [serviceData._id]);
 
     return (
-
         <div
             style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
                 opacity: '4',
             }}
-            className=" mx-auto w-full lg:w-5/6 my-8 p-6 rounded-2xl"
+            className="mx-auto w-full lg:w-5/6 my-8 p-6 rounded-2xl"
         >
-
             <h1 className="text-2xl lg:text-5xl font-bold gradient-text text-center mb-8">
                 Reviews
             </h1>
@@ -66,48 +79,54 @@ const Review = ({ serviceData }) => {
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
-                            <tr className=''>
+                            <tr>
                                 <th>Name</th>
                                 <th className='text-center'>Review</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* row 1 */}
-                            <tr>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={user?.photoURL} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">{user?.displayName}</div>
-
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p className='text-center'>reviewwwwwwww</p>
-                                </td>
-                            </tr>
+                            {
+                                reviews?.length > 0 ?
+                                    reviews?.map((review, index) => (
+                                        <tr key={index}>
+                                            <td>
+                                                <div className="flex items-center space-x-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-squircle w-12 h-12">
+                                                            <img src={review?.img} alt="Avatar" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">{review.name}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p className='text-center'>{review.description}</p>
+                                            </td>
+                                        </tr>
+                                    ))
+                                    : (
+                                        <tr>
+                                            <td colSpan="2" className="text-center">
+                                                No review added.
+                                            </td>
+                                        </tr>
+                                    )
+                            }
                         </tbody>
                     </table>
-
                 </div>
             </div>
 
-            {
-                user?.email ?
-                    <>
+            {user?.email ? (
+                <>
+                    <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 rounded flex items-center justify-center mt-6" onClick={() => window.my_modal_1.showModal()}>Add Review</button>
 
-                        <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 rounded flex items-center justify-center mt-6" onClick={() => window.my_modal_1.showModal()}>Add Review</button>
-
-                        <dialog id="my_modal_1" className="modal">
+                    <dialog id="my_modal_1" className="modal">
+                        <div >
                             <div className="modal-action">
-
                                 <button className="btn" onClick={() => window.my_modal_1.close()}>X</button>
                             </div>
                             <form onSubmit={handleAddReview} method="dialog" className="modal-box">
@@ -165,20 +184,14 @@ const Review = ({ serviceData }) => {
                                 <div className="mt-8">
                                     <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 w-56 rounded" >Add Review</button>
                                 </div>
-
                             </form>
-
-                        </dialog>
-                    </>
-                    :
-
-                    <p className='mt-6'>Please <Link to="/login" className='text-blue-500 underline'>Login</Link> to add a review</p>
-            }
-
-
+                        </div>
+                    </dialog>
+                </>
+            ) : (
+                <p className='mt-6'>Please <Link to="/login" className='text-blue-500 underline'>Login</Link> to add a review</p>
+            )}
         </div>
-
-
     );
 };
 
