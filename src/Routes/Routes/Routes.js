@@ -38,7 +38,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://capture-craze-server.vercel.app/service/${params.id}`)
             },
             {
                 path: '/myreview',

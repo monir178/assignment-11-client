@@ -9,7 +9,7 @@ const ServiceCard = ({ service }) => {
 
 
     return (
-        <div className="card w-96 bg-base-300 shadow-xl mx-auto">
+        <div data-aos="fade-up" className="card w-96 bg-base-300 shadow-xl mx-auto">
             <figure >
                 <PhotoProvider>
                     <PhotoView src={img}>
@@ -24,7 +24,7 @@ const ServiceCard = ({ service }) => {
 
             </figure>
             <div className="card-body">
-                <h2 className="card-title text-blue-700">{title}!</h2>
+                <h2 className="card-title text-blue-700">{title}</h2>
                 <p>{description.slice(0, 70)}...</p>
                 <p className='font-bold '>
                     Service charge: <span className="text-yellow-700"> ${price}</span>

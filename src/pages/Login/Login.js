@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
 import Swal from 'sweetalert2'
+import Head from '../../layout/Head/Head';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -23,23 +24,23 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
 
         signInEmail(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 }
-                console.log(currentUser);
+                // console.log(currentUser);
 
 
                 if (user?.email) {
 
                     //get jwt token
-                    fetch('http://localhost:5000/jwt', {
+                    fetch('https://capture-craze-server.vercel.app/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -48,7 +49,7 @@ const Login = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
 
                             //store jwt token in local storage
                             localStorage.setItem('capture-token', data.token)
@@ -92,18 +93,18 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user);
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 }
-                console.log(currentUser);
+                // console.log(currentUser);
 
 
                 if (user?.email) {
 
                     //get jwt token
-                    fetch('http://localhost:5000/jwt', {
+                    fetch('https://capture-craze-server.vercel.app/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -112,7 +113,7 @@ const Login = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
 
                             //store jwt token in local storage
                             localStorage.setItem('capture-token', data.token)
@@ -151,18 +152,18 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user);
-                console.log(user);
+                // console.log(user);
 
                 const currentUser = {
                     email: user.email
                 }
-                console.log(currentUser);
+                // console.log(currentUser);
 
 
                 if (user?.email) {
 
                     //get jwt token
-                    fetch('http://localhost:5000/jwt', {
+                    fetch('https://capture-craze-server.vercel.app/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -171,7 +172,7 @@ const Login = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
 
                             //store jwt token in local storage
                             localStorage.setItem('capture-token', data.token)
@@ -202,7 +203,7 @@ const Login = () => {
 
 
     return (
-        <div className="py-6">
+        <div data-aos="fade-up" className="py-6">
             <div className="flex flex-col lg:flex-row-reverse rounded-lg shadow-xl overflow-hidden mx-auto w-full lg:w-4/5 justify-center items-center"
                 style={{
                     backdropFilter: 'blur(10px)',
@@ -210,6 +211,7 @@ const Login = () => {
 
                 }}
             >
+                <Head title="Login"></Head>
                 <div className="w-3/4 lg:w-1/2 bg-cover">
                     <div className='w-full lg:w-4/5 lg:mx-auto h-56  sm:h-96 '>
                         <Lottie animationData={animation} loop={true} />

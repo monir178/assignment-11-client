@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import 'react-photo-view/dist/react-photo-view.css';
 
+AOS.init();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

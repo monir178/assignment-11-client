@@ -1,12 +1,15 @@
 import React from 'react';
+import Head from '../../layout/Head/Head';
 
 const Blogs = () => {
     return (
 
         <div className='w-full'>
+            <Head title="Blogs"></Head>
+
             <h1 className='text-center my-5 font-bold text-2xl text-blue-700'><span>Asked: </span> What are the differences between SQL and NoSQL?</h1>
 
-            <div
+            <div data-aos="fade-up"
 
                 className='flex flex-col sm:flex-row justify-between gap-4 mb-6 w-full'>
                 <p className='p-4 rounded-xl font-semibold' style={{
@@ -26,7 +29,7 @@ const Blogs = () => {
             </div>
             <h1 className='text-center my-5 font-bold text-2xl text-blue-700'><span>Asked: </span> What is JWT, and how does it work?</h1>
 
-            <div className='p-4  mb-6 rounded-xl font-semibold' style={{
+            <div data-aos="fade-up" className='p-4  mb-6 rounded-xl font-semibold' style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
                 opacity: '4'
@@ -55,7 +58,7 @@ const Blogs = () => {
             <h1 className='text-center my-5 font-bold text-2xl text-blue-700 '><span>Asked: </span> What is the difference between javascript and NodeJS?
             </h1>
 
-            <div
+            <div data-aos="fade-up"
 
                 className='flex flex-col sm:flex-row justify-between gap-4 mb-6  w-full'>
                 <p className='p-4 rounded-xl font-semibold' style={{
@@ -76,7 +79,7 @@ const Blogs = () => {
 
             <h1 className='text-center my-5 font-bold text-2xl text-blue-700 '><span>Asked: </span> How does NodeJS handle multiple requests at the same time?</h1>
 
-            <div className='p-4  mb-6 rounded-xl font-semibold' style={{
+            <div data-aos="fade-up" className='p-4  mb-6 rounded-xl font-semibold' style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
                 opacity: '4'

@@ -1,5 +1,6 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import Head from '../../layout/Head/Head';
 
 const AddService = () => {
     const handleSubmit = event => {
@@ -11,10 +12,11 @@ const AddService = () => {
             description: event.target.description.value,
         };
 
-        fetch("http://localhost:5000/services", {
+        fetch("https://capture-craze-server.vercel.app/services", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('capture-token')}`
             },
             body: JSON.stringify(service)
         })
@@ -36,13 +38,16 @@ const AddService = () => {
 
 
     return (
-        <div
+        <div data-aos="fade-up"
+
             style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
                 opacity: '4',
-            }}
-            className='w-full lg:w-5/6 mx-auto my-8 p-8 rounded-xl'>
+            }
+            }
+            className='w-full lg:w-5/6 mx-auto my-8 p-8 rounded-xl' >
+            <Head title="Add Service"></Head>
             <h1 className="text-2xl lg:text-5xl font-bold gradient-text text-center mb-4">
                 Fill out your service form
             </h1>
@@ -71,7 +76,7 @@ const AddService = () => {
                     <label className="block  text-sm font-bold mb-2">Your Service Charge</label>
                     <input
                         className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                        type="text"
+                        type="number"
                         name="charge"
                         id="charge"
                         placeholder='service charge' />
@@ -91,7 +96,7 @@ const AddService = () => {
                     <button className="bg-gradient-to-b from-blue-700 to-sky-400 text-white font-bold py-2 px-4 w-56 rounded" >Add Your Service</button>
                 </div>
             </form>
-        </div>
+        </div >
     );
 };
 

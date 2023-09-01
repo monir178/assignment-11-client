@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Review = ({ serviceData }) => {
-    console.log(serviceData);
+    // console.log(serviceData);
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
-    console.log(reviews);
+    // console.log(reviews);
 
     const handleAddReview = event => {
         event.preventDefault();
@@ -24,10 +24,11 @@ const Review = ({ serviceData }) => {
         };
 
 
-        fetch("http://localhost:5000/reviews", {
+        fetch("https://capture-craze-server.vercel.app/reviews", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('capture-token')}`
             },
             body: JSON.stringify(review)
         })
@@ -51,7 +52,7 @@ const Review = ({ serviceData }) => {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${serviceData._id}`)
+        fetch(`https://capture-craze-server.vercel.app/reviews/${serviceData._id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -64,7 +65,7 @@ const Review = ({ serviceData }) => {
     }, [serviceData._id]);
 
     return (
-        <div
+        <div data-aos="fade-up"
             style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',

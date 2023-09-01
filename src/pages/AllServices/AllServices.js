@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import ServiceCard from '../Home/ServiceCard';
 import LoadingSpinner from '../../utils/LoadingSpinner';
+import Head from '../../layout/Head/Head';
 
 const AllServices = () => {
     const [services, setServices] = useState([]);
 
     // load all services from server
     useEffect(() => {
-        fetch('http://localhost:5000/allservices')
+        fetch('https://capture-craze-server.vercel.app/allservices')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
                     setServices(data.data);
-                    console.log();
+                    // console.log();
                 }
                 else {
                     Swal.fire(
@@ -35,6 +36,7 @@ const AllServices = () => {
                 opacity: '4',
             }}
         >
+            <Head title="All Services"></Head>
 
             <h1 className="text-2xl lg:text-5xl font-bold gradient-text text-center mb-8">
                 All Services

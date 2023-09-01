@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import Head from '../../layout/Head/Head';
 
 const MyReview = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -12,20 +13,20 @@ const MyReview = () => {
     // get reviews by email
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/reviews?email=${user.email}`, {
+            fetch(`https://capture-craze-server.vercel.app/reviews?email=${user.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('capture-token')}`
                 }
             })
                 .then(res => {
                     if (res.status === 401 || res.status === 403) {
-                        logOut()
+                        return logOut()
                     }
                     return res.json()
                 })
                 .then(data => {
                     setMyReview(data.data);
-                });
+                })
 
         }
     }, [user?.email, logOut]);
@@ -45,10 +46,11 @@ const MyReview = () => {
     //updating the data
     const saveEditedDescription = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/reviews/${selectedReview._id}`, {
+            const response = await fetch(`https://capture-craze-server.vercel.app/reviews/${selectedReview._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('capture-token')}`
                 },
                 body: JSON.stringify({ description: editedDescription }),
             });
@@ -74,8 +76,11 @@ const MyReview = () => {
     // method for deleting the data
     const deleteReview = async (review) => {
         try {
-            const response = await fetch(`http://localhost:5000/reviews/${review._id}`, {
+            const response = await fetch(`https://capture-craze-server.vercel.app/reviews/${review._id}`, {
                 method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('capture-token')}`
+                }
             });
             const data = await response.json();
             if (data.success) {
@@ -111,7 +116,7 @@ const MyReview = () => {
 
 
     return (
-        <div
+        <div data-aos="fade-up"
             style={{
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -119,6 +124,7 @@ const MyReview = () => {
             }}
             className="mx-auto w-full lg:w-5/6 my-8 p-6 rounded-2xl"
         >
+            <Head title="My reviews"></Head>
             <div className="overflow-x-auto">
                 <table className="table min-w-full">
                     <thead>

@@ -12,7 +12,7 @@ const Header = () => {
 
     const handleHamburgerMenuToggle = () => {
         setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
-        console.log(isHamburgerMenuOpen);
+        // console.log(isHamburgerMenuOpen);
     };
 
 

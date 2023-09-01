@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Review from './Review';
+import Head from '../../layout/Head/Head';
 
 const ServiceDetails = () => {
     const singleService = useLoaderData();
@@ -10,7 +11,7 @@ const ServiceDetails = () => {
 
     return (
         <div>
-            <div
+            <div data-aos="fade-up"
                 style={{
                     backdropFilter: 'blur(10px)',
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -18,6 +19,7 @@ const ServiceDetails = () => {
                 }}
                 className=" mx-auto w-full lg:w-5/6 my-8 p-6 rounded-2xl"
             >
+                <Head title="Service Details"></Head>
 
                 <div>
                     <img className='w-full rounded-xl' src={img} alt="" />

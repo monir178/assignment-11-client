@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import animation from '../../assests/animation/register.json';
 import Lottie from 'lottie-react';
+import Head from '../../layout/Head/Head';
 
 const Register = () => {
     const [error, setError] = useState('');
-
     const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -19,7 +22,7 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const password = form.password.value;
         const confirmPassword = form.confirm.value;
-        console.log(name, photoURL, phone, email, password, confirmPassword);
+        // console.log(name, photoURL, phone, email, password, confirmPassword);
 
 
         if (password === confirmPassword) {
@@ -27,9 +30,10 @@ const Register = () => {
             createUser(email, password)
                 .then(result => {
                     const user = result.user;
-                    console.log(user);
+                    // console.log(user);
                     setError('');
                     form.reset();
+                    navigate(from, { replace: true })
 
 
                     Swal.fire({
@@ -51,7 +55,7 @@ const Register = () => {
     }
 
     return (
-        <div className="my-8">
+        <div data-aos="zoom-in" className="my-8">
             <div className="flex flex-col lg:flex-row-reverse rounded-lg shadow-xl overflow-hidden mx-auto w-full lg:w-4/5 justify-center items-center"
                 style={{
                     backdropFilter: 'blur(10px)',
@@ -59,6 +63,7 @@ const Register = () => {
 
                 }}
             >
+                <Head title="Register"></Head>
                 <div className="w-[200px] lg:w-1/2 bg-cover">
                     <div className='w-full flex items-center justify-center  mb-0 lg:mb-24 lg:w-4/5 lg:mx-auto h-56 sm:h-96 '>
                         <Lottie animationData={animation} loop={true} />
