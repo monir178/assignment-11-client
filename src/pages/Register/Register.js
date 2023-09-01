@@ -22,7 +22,7 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const password = form.password.value;
         const confirmPassword = form.confirm.value;
-        // console.log(name, photoURL, phone, email, password, confirmPassword);
+
 
 
         if (password === confirmPassword) {

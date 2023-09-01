@@ -41,6 +41,8 @@ Welcome to Capture Craze, a photography service review website where users can e
 - React Photo View
 - AOS React (Scroll Animations)
 
+##Live site: https://capture-craze-e6aab.web.app/
+
 ## Getting Started
 
 To get started with the project on your local machine, follow these steps:
@@ -49,4 +51,4 @@ To get started with the project on your local machine, follow these steps:
 
 1. Clone the repository using Git:
    ```bash
-   git clone https://github.com/your-username/capture-craze.git
+   git clone https://github.com/monir178/assignment-11-client
